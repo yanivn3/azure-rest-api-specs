@@ -1254,6 +1254,11 @@
         },
         "/subscriptions/{subscriptionId}/providers/Microsoft.Security/topology": {
             "get": {
+                "x-ms-examples": {
+                    "Get topology on a subscription": {
+                        "$ref": "./examples/Topology/GetTopologySubscription_example.json"
+                    }
+                },
                 "tags": ["Topology"],
                 "description": "Gets a list that allows to build a topology view of a subscription.",
                 "operationId": "Topology_List",
@@ -1285,6 +1290,11 @@
         },
         "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/topology": {
             "get": {
+                "x-ms-examples": {
+                    "Get topology on a subscription from security data location": {
+                        "$ref": "./examples/Topology/GetTopologySubscriptionLocation_example.json"
+                    }
+                },
                 "tags": ["Topology"],
                 "description": "Gets a list that allows to build a topology view of a subscription and location.",
                 "operationId": "Topology_ListByHomeRegion",
@@ -1319,6 +1329,11 @@
         },
         "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/topology/{topologyResourceName}": {
             "get": {
+                "x-ms-examples": {
+                    "Get topology": {
+                        "$ref": "./examples/Topology/GetTopology_example.json"
+                    }
+                },
                 "tags": ["Topology"],
                 "description": "Gets a specific topology component.",
                 "operationId": "Topology_Get",
