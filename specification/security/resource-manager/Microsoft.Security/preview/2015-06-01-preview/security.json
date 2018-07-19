@@ -1255,8 +1255,8 @@
         "/subscriptions/{subscriptionId}/providers/Microsoft.Security/topology": {
             "get": {
                 "tags": ["Topology"],
-                "description": "Gets a list that allows to build a toplogy view of subscription.",
-                "operationId": "Toplogy_List",
+                "description": "Gets a list that allows to build a topology view of a subscription.",
+                "operationId": "Topology_List",
                 "parameters": [{
                         "$ref": "#/parameters/SubscriptionId"
                     },
@@ -1286,8 +1286,8 @@
         "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/topology": {
             "get": {
                 "tags": ["Topology"],
-                "description": "Gets a list that allows to build a toplogy view of subscription and location.",
-                "operationId": "Toplogy_ListByHomeRegion",
+                "description": "Gets a list that allows to build a topology view of a subscription and location.",
+                "operationId": "Topology_ListByHomeRegion",
                 "parameters": [{
                         "$ref": "#/parameters/SubscriptionId"
                     },
@@ -1877,6 +1877,7 @@
             "properties": {
                 "value": {
                     "type": "array",
+                    "readOnly": true,
                     "items": {
                         "$ref": "#/definitions/TopologyResource"
                     }
@@ -1893,12 +1894,10 @@
             "properties": {
                 "properties": {
                     "x-ms-client-flatten": true,
+                    "readOnly": true,
                     "$ref": "#/definitions/TopologyResourceProperties"
                 }
             },
-            "required": [
-                "properties"
-            ],
             "allOf": [{
                     "$ref": "#/definitions/Resource"
                 },
@@ -1912,50 +1911,56 @@
             "properties": {
                 "calculatedDateTime": {
                     "type": "string",
-                    "description": "The UTC time on which topology where calculated"
+                    "format": "date-time",
+                    "readOnly": true,
+                    "description": "The UTC time on which the topology was calculated"
                 },
-                "Resources": {
+                "resources": {
                     "type": "array",
-                    "description": "Azure resources which re part of this topology resource",
+                    "readOnly": true,
+                    "description": "Azure resources which are part of this topology resource",
                     "items": {
                         "$ref": "#/definitions/TopologySingleResource"
                     }
                 }
-            },
-            "required": [
-                "calculatedDateTime",
-                "Resources"
-            ]
+            }
         },
         "TopologySingleResource": {
             "type": "object",
             "properties": {
                 "resourceId": {
                     "type": "string",
+                    "readOnly": true,
                     "description": "Azure resource id"
                 },
                 "severity": {
                     "type": "string",
+                    "readOnly": true,
                     "description": "The security severity of the resource"
                 },
                 "recommendationExist": {
                     "type": "boolean",
+                    "readOnly": true,
                     "description": "Indicates if the resource has security recommendations"
                 },
                 "internetFacing": {
                     "type": "boolean",
+                    "readOnly": true,
                     "description": "Indicates if the resource has direct connectivity to the Internet"
                 },
                 "secureScore": {
                     "type": "integer",
+                    "readOnly": true,
                     "description": "Security score of the resource based on its severity, siblings security status and location in topology"
                 },
                 "location": {
                     "type": "string",
+                    "readOnly": true,
                     "description": "The location of this resource"
                 },
                 "parents": {
                     "type": "array",
+                    "readOnly": true,
                     "description": "Azure resources connected to this resource which are in higher level in the topology view",
                     "items": {
                         "$ref": "#/definitions/TopologySingleResourceParent"
@@ -1963,44 +1968,33 @@
                 },
                 "children": {
                     "type": "array",
+                    "readOnly": true,
                     "description": "Azure resources connected to this resource which are in lower level in the topology view",
                     "items": {
                         "$ref": "#/definitions/TopologySingleResourceParentChild"
                     }
                 }
-            },
-            "required": [
-                "resourceId",
-                "severity",
-                "recommendationExist",
-                "internetFacing",
-                "secureScore",
-                "location"
-            ]
+            }
         },
         "TopologySingleResourceParent": {
             "type": "object",
             "properties": {
                 "resourceId": {
                     "type": "string",
+                    "readOnly": true,
                     "description": "Azure resource id"
                 }
-            },
-            "required": [
-                "resourceId"
-            ]
+            }
         },
         "TopologySingleResourceParentChild": {
             "type": "object",
             "properties": {
                 "resourceId": {
                     "type": "string",
+                    "readOnly": true,
                     "description": "Azure resource id"
                 }
-            },
-            "required": [
-                "resourceId"
-            ]
+            }
         },
         "JitNetworkAccessPoliciesList": {
             "type": "object",
@@ -2680,7 +2674,7 @@
         "TopologyResourceName": {
             "name": "topologyResourceName",
             "in": "path",
-            "description": "Name of an topology resource group.",
+            "description": "Name of a topology resource group.",
             "required": true,
             "type": "string",
             "x-ms-parameter-location": "method"
