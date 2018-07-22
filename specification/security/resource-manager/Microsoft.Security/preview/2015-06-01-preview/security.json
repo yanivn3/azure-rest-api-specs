@@ -1953,7 +1953,7 @@
                     "readOnly": true,
                     "description": "The security severity of the resource"
                 },
-                "recommendationExist": {
+                "recommendationsExist": {
                     "type": "boolean",
                     "readOnly": true,
                     "description": "Indicates if the resource has security recommendations"
@@ -1963,10 +1963,10 @@
                     "readOnly": true,
                     "description": "Indicates if the resource has direct connectivity to the Internet"
                 },
-                "secureScore": {
+                "topologyScore": {
                     "type": "integer",
                     "readOnly": true,
-                    "description": "Security score of the resource based on its severity, siblings security status and location in topology"
+                    "description": "Security score of the resource based on its severity, siblings security status and location in topology (to be used for clustering similar objects together)"
                 },
                 "location": {
                     "type": "string",
@@ -1986,7 +1986,7 @@
                     "readOnly": true,
                     "description": "Azure resources connected to this resource which are in lower level in the topology view",
                     "items": {
-                        "$ref": "#/definitions/TopologySingleResourceParentChild"
+                        "$ref": "#/definitions/TopologySingleResourceChild"
                     }
                 }
             }
@@ -1997,17 +1997,17 @@
                 "resourceId": {
                     "type": "string",
                     "readOnly": true,
-                    "description": "Azure resource id"
+                    "description": "Azure resource id which serves as parent resource in topology view"
                 }
             }
         },
-        "TopologySingleResourceParentChild": {
+        "TopologySingleResourceChild": {
             "type": "object",
             "properties": {
                 "resourceId": {
                     "type": "string",
                     "readOnly": true,
-                    "description": "Azure resource id"
+                    "description": "Azure resource id which serves as child resource in topology view"
                 }
             }
         },
@@ -2689,7 +2689,7 @@
         "TopologyResourceName": {
             "name": "topologyResourceName",
             "in": "path",
-            "description": "Name of a topology resource group.",
+            "description": "Name of a topology resources collection.",
             "required": true,
             "type": "string",
             "x-ms-parameter-location": "method"

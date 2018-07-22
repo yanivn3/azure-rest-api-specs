@@ -13,13 +13,11 @@
                             "calculatedDateTime": "2018-07-10T13:56:10.5755270Z",
                             "resources": [
                                 {
-                                    "resourceId": {
-                                        "ID": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Network/virtualNetworks/myvnet"
-                                    },
+                                    "resourceId": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Network/virtualNetworks/myvnet",
 						            "severity": "Healthy",
 						            "internetFacing": false,
 						            "recommendationsExist": false,
-						            "secureScore": 0,
+						            "topologyScore": 0,
 						            "location": "westus",
 						            "children": [
 							            {
@@ -39,13 +37,11 @@
                             "calculatedDateTime": "2018-07-10T13:56:10.5755270Z",
                             "resources": [
                                 {
-                                    "resourceId": {
-                                        "ID": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet"
-                                    },
+                                    "resourceId": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet",
 						            "severity": "Healthy",
 						            "internetFacing": false,
 						            "recommendationsExist": false,
-						            "secureScore": 5,
+						            "topologyScore": 5,
 						            "location": "westus",
                                     "parents": [
 							            {
