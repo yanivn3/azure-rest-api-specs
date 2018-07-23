@@ -1252,7 +1252,7 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/topology": {
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/topologies": {
             "get": {
                 "x-ms-examples": {
                     "Get topology on a subscription": {
@@ -1288,7 +1288,7 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/topology": {
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/topologies": {
             "get": {
                 "x-ms-examples": {
                     "Get topology on a subscription from security data location": {
@@ -1327,7 +1327,7 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/topology/{topologyResourceName}": {
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/topologies/{topologyResourceName}": {
             "get": {
                 "x-ms-examples": {
                     "Get topology": {

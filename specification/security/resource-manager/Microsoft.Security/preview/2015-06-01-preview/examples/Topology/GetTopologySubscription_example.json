@@ -26,9 +26,9 @@
                                 }
                             ]
                         },
-                        "id": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Security/locations/centralus/topology/vnets",
+                        "id": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Security/locations/centralus/topologies/vnets",
                         "name": "vnets",
-                        "type": "Microsoft.Security/locations/topology",
+                        "type": "Microsoft.Security/locations/topologies",
                         "location": "westus"
                     },
                     {
@@ -50,9 +50,9 @@
                                 }
                             ]
                         },
-                        "id": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Security/locations/centralus/topology/subnets",
+                        "id": "/subscriptions/3eeab341-f466-499c-a8be-85427e154bad/resourceGroups/myservers/providers/Microsoft.Security/locations/centralus/topologies/subnets",
                         "name": "subnets",
-                        "type": "Microsoft.Security/locations/topology",
+                        "type": "Microsoft.Security/locations/topologies",
                         "location": "westus"
                     }
                 ]
