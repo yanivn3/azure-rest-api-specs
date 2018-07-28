@@ -1930,7 +1930,7 @@
                     "readOnly": true,
                     "description": "The UTC time on which the topology was calculated"
                 },
-                "resources": {
+                "topologyResources": {
                     "type": "array",
                     "readOnly": true,
                     "description": "Azure resources which are part of this topology resource",
@@ -1958,10 +1958,10 @@
                     "readOnly": true,
                     "description": "Indicates if the resource has security recommendations"
                 },
-                "internetFacing": {
-                    "type": "boolean",
+                "networkZones": {
+                    "type": "string",
                     "readOnly": true,
-                    "description": "Indicates if the resource has direct connectivity to the Internet"
+                    "description": "Indicates the resource connectivity level to the Internet (InternetFacing, Internal ,etc.)"
                 },
                 "topologyScore": {
                     "type": "integer",
