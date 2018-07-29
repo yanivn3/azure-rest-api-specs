@@ -1966,7 +1966,7 @@
                 "topologyScore": {
                     "type": "integer",
                     "readOnly": true,
-                    "description": "Security score of the resource based on its severity, siblings security status and location in topology (to be used for clustering similar objects together)"
+                    "description": "Score of the resource based on its security severity"
                 },
                 "location": {
                     "type": "string",
