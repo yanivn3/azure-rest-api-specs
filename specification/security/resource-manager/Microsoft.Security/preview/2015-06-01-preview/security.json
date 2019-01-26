@@ -510,7 +510,7 @@
                 "tags": [
                     "Alerts"
                 ],
-                "description": "List all the alerts alerts that are associated with the resource group",
+                "description": "List all the alerts that are associated with the resource group",
                 "operationId": "Alerts_ListByResourceGroup",
                 "parameters": [
                     {
@@ -1555,17 +1555,20 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/topologies": {
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/allowedConnections": {
             "get": {
                 "x-ms-examples": {
-                    "Get topology on a subscription": {
-                        "$ref": "./examples/Topology/GetTopologySubscription_example.json"
+                    "Get allowed connections on a subscription": {
+                        "$ref": "./examples/AllowedConnections/GetAllowedConnectionsSubscription_example.json"
                     }
                 },
-                "tags": ["Topology"],
-                "description": "Gets a list that allows to build a topology view of a subscription.",
-                "operationId": "Topology_List",
-                "parameters": [{
+                "tags": [
+                    "AllowedConnections"
+                ],
+                "description": "Gets the list of all possible traffic between resources for the subscription",
+                "operationId": "AllowedConnections_List",
+                "parameters": [
+                    {
                         "$ref": "#/parameters/SubscriptionId"
                     },
                     {
@@ -1576,7 +1579,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/TopologyList"
+                            "$ref": "#/definitions/AllowedConnectionsList"
                         }
                     },
                     "default": {
@@ -1591,17 +1594,20 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/topologies": {
+        "/subscriptions/{subscriptionId}/providers/Microsoft.Security/locations/{ascLocation}/allowedConnections": {
             "get": {
                 "x-ms-examples": {
-                    "Get topology on a subscription from security data location": {
-                        "$ref": "./examples/Topology/GetTopologySubscriptionLocation_example.json"
+                    "Get allowed connections on a subscription from security data location": {
+                        "$ref": "./examples/AllowedConnections/GetAllowedConnectionsSubscriptionLocation_example.json"
                     }
                 },
-                "tags": ["Topology"],
-                "description": "Gets a list that allows to build a topology view of a subscription and location.",
-                "operationId": "Topology_ListByHomeRegion",
-                "parameters": [{
+                "tags": [
+                    "AllowedConnections"
+                ],
+                "description": "Gets the list of all possible traffic between resources for the subscription and location.",
+                "operationId": "AllowedConnections_ListByHomeRegion",
+                "parameters": [
+                    {
                         "$ref": "#/parameters/SubscriptionId"
                     },
                     {
@@ -1615,7 +1621,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/TopologyList"
+                            "$ref": "#/definitions/AllowedConnectionsList"
                         }
                     },
                     "default": {
@@ -1630,17 +1636,20 @@
                 }
             }
         },
-        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/topologies/{topologyResourceName}": {
+        "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/locations/{ascLocation}/allowedConnections/{connectionType}": {
             "get": {
                 "x-ms-examples": {
-                    "Get topology": {
-                        "$ref": "./examples/Topology/GetTopology_example.json"
+                    "Get allowed connections": {
+                        "$ref": "./examples/AllowedConnections/GetAllowedConnections_example.json"
                     }
                 },
-                "tags": ["Topology"],
-                "description": "Gets a specific topology component.",
-                "operationId": "Topology_Get",
-                "parameters": [{
+                "tags": [
+                    "AllowedConnections"
+                ],
+                "description": "Gets the list of all possible traffic between resources for the subscription and location, based on connection type.",
+                "operationId": "AllowedConnections_Get",
+                "parameters": [
+                    {
                         "$ref": "#/parameters/SubscriptionId"
                     },
                     {
@@ -1650,7 +1659,7 @@
                         "$ref": "#/parameters/AscLocation"
                     },
                     {
-                        "$ref": "#/parameters/TopologyResourceName"
+                        "$ref": "#/parameters/ConnectionType"
                     },
                     {
                         "$ref": "#/parameters/ApiVersion"
@@ -1660,7 +1669,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/TopologyResource"
+                            "$ref": "#/definitions/AllowedConnectionsResource"
                         }
                     },
                     "default": {
@@ -2513,7 +2522,7 @@
                     "type": "array",
                     "description": "Mutually exclusive with the \"allowedSourceAddressPrefix\" parameter.",
                     "items": {
-                        "description": "IP addess or CIDR, for example \"192.168.0.3\" or \"192.168.0.0/16\".",
+                        "description": "IP address or CIDR, for example \"192.168.0.3\" or \"192.168.0.0/16\".",
                         "type": "string"
                     }
                 },
@@ -2652,7 +2661,7 @@
         },
         "ExternalSecuritySolution": {
             "type": "object",
-            "description": "Represents a security solution external to Azure Security Center which sends information to an OMS workspace and whos data is displayed by Azure Security Center.",
+            "description": "Represents a security solution external to Azure Security Center which sends information to an OMS workspace and whose data is displayed by Azure Security Center.",
             "discriminator": "kind",
             "properties": {},
             "allOf": [
@@ -2843,6 +2852,111 @@
                     "$ref": "#/definitions/ExternalSecuritySolutionProperties"
                 }
             ]
+        },
+        "AllowedConnectionsList": {
+            "type": "object",
+            "description": "List of all possible traffic between Azure resources",
+            "properties": {
+                "value": {
+                    "type": "array",
+                    "readOnly": true,
+                    "items": {
+                        "$ref": "#/definitions/AllowedConnectionsResource"
+                    }
+                },
+                "nextLink": {
+                    "readOnly": true,
+                    "type": "string",
+                    "description": "The URI to fetch the next page."
+                }
+            }
+        },
+        "AllowedConnectionsResource": {
+            "type": "object",
+            "description": "The resource whose properties describes the allowed traffic between Azure resources",
+            "properties": {
+                "properties": {
+                    "x-ms-client-flatten": true,
+                    "readOnly": true,
+                    "$ref": "#/definitions/AllowedConnectionsResourceProperties"
+                }
+            },
+            "allOf": [
+                {
+                    "$ref": "#/definitions/Resource"
+                },
+                {
+                    "$ref": "#/definitions/Location"
+                }
+            ]
+        },
+        "AllowedConnectionsResourceProperties": {
+            "type": "object",
+            "description": "Describes the allowed traffic between Azure resources",
+            "properties": {
+                "calculatedDateTime": {
+                    "type": "string",
+                    "format": "date-time",
+                    "readOnly": true,
+                    "description": "The UTC time on which the allowed connections resource was calculated"
+                },
+                "connectableResources": {
+                    "type": "array",
+                    "readOnly": true,
+                    "description": "List of connectable resources",
+                    "items": {
+                        "$ref": "#/definitions/ConnectableResource"
+                    }
+                }
+            }
+        },
+        "ConnectableResource": {
+            "type": "object",
+            "description": "Describes the allowed inbound and outbound traffic of an Azure resource",
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "The Azure resource id"
+                },
+                "inboundConnectedResources": {
+                    "type": "array",
+                    "readOnly": true,
+                    "description": "The list of Azure resources that the resource has inbound allowed connection from",
+                    "items": {
+                        "$ref": "#/definitions/ConnectedResource"
+                    }
+                },
+                "outboundConnectedResources": {
+                    "type": "array",
+                    "readOnly": true,
+                    "description": "The list of Azure resources that the resource has outbound allowed connection to",
+                    "items": {
+                        "$ref": "#/definitions/ConnectedResource"
+                    }
+                }
+            }
+        },
+        "ConnectedResource": {
+            "type": "object",
+            "description": "Describes properties of a connected resource",
+            "properties": {
+                "connectedResourceId": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "The Azure resource id of the connected resource"
+                },
+                "tcpPorts": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "The allowed tcp ports"
+                },
+                "udpPorts": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "The allowed udp ports"
+                }
+            }
         }
     },
     "parameters": {
@@ -3033,6 +3147,30 @@
             "description": "Name of a topology resources collection.",
             "required": true,
             "type": "string",
+            "x-ms-parameter-location": "method"
+        },
+        "ConnectionType": {
+            "name": "connectionType",
+            "type": "string",
+            "in": "path",
+            "description": "The type of allowed connections (Internal, External)",
+            "required": true,
+            "enum": [
+                "Internal",
+                "External"
+            ],
+            "x-ms-enum": {
+                "name": "connectionType",
+                "modelAsString": true,
+                "values": [
+                    {
+                        "value": "Internal"
+                    },
+                    {
+                        "value": "External"
+                    }
+                ]
+            },
             "x-ms-parameter-location": "method"
         }
     }
